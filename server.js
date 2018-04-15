@@ -1,7 +1,7 @@
 const express =require('express');
 const hbs = require('hbs');
 const fs=require('fs');
-
+const port= process.env.PORT || 3000;
 
 var app= express();
 
@@ -12,7 +12,7 @@ app.set('view engine','hbs');
   var now= new Date().toString();
   var log=`${now} ${req.method} ${req.url}`;
   console.log(log);
-  fs.appendFile('server log', log+'\n',(err)=>{
+  fs.appendFile('server.log', log+'\n',(err)=>{
     if(err)
       {console.log('Unable to append to server log');
            }
@@ -61,6 +61,6 @@ app.get('/bad',(req,res)=>{
 
 // app.listen(3000);
 
-app.listen(3000,()=>{
-  console.log('Server is up on port 3000 ');
+app.listen(port,()=>{
+  console.log(`Server is up on port ${port} `);
 });
